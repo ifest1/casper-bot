@@ -3,7 +3,9 @@ const News = require('../schemas/news');
 const { getNewsByCategory } = require('../queries');
 
 async function dialogController(req, res) {
-  let news = await getNewsByCategory('Categoria1');
+  let category = req.body.queryResult.queryText;
+  let news = await getNewsByCategory(category);
+  console.log(news);
   let cards = [];
   news.forEach((item) => {
     cards.push(createCard
